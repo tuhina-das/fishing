@@ -27,6 +27,7 @@ import { useTextures } from "./Textures.jsx";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import Header from "./Components/Header.jsx";
 import FadeIn from "./Components/FadeIn.jsx";
+import Popup from "./Components/Popup.jsx";
 
 // Mesh for the sphere container
 const SphereContainer = () => {
@@ -146,9 +147,21 @@ const Fish = () => {
 
   return (
     <>
-      <primitive object={fish} scale={0.12} />
-      <primitive object={fish2} scale={0.15} />
-      <primitive object={fish3} scale={0.09} />
+      <primitive
+        object={fish}
+        scale={0.12}
+        onPointerDown={() => console.log("fish 1 clicked")}
+      />
+      <primitive
+        object={fish2}
+        scale={0.15}
+        onPointerDown={() => console.log("fish 2 clicked")}
+      />
+      <primitive
+        object={fish3}
+        scale={0.09}
+        onPointerDown={() => console.log("fish 3 clicked")}
+      />
     </>
   );
 };
@@ -172,7 +185,7 @@ function App() {
     <FadeIn>
       <div className="relative w-screen h-screen">
         <Header />
-
+        <Popup />
         <Canvas className="w-full h-full">
           // Background, lighting and environment
           <ambientLight intensity={1} color={"#c8ff00ff"} />
