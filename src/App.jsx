@@ -3,7 +3,7 @@
  * Note: This is my first time using ThreeJS, and my first React project in a minute! I'm going to be making notes as I go to
  * help me catch up to speed :)
  *
- * TODO: Make a banner and message box :)
+ * TODO: Make a banner and message box :) Eventuallly add shader effects to water
  */
 import * as THREE from "three";
 
@@ -19,6 +19,8 @@ import { useRef } from "react";
 import { CylinderGeometry, FrontSide, PointLight } from "three";
 import { useTextures } from "./Textures.jsx";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
+import Header from "./Components/Header.jsx";
+import FadeIn from "./Components/FadeIn.jsx";
 
 // Mesh for the sphere container
 const SphereContainer = () => {
@@ -49,11 +51,11 @@ const WaterMaterial = () => {
       <sphereGeometry args={[4.75, 64, 64]} />
       <meshPhysicalMaterial
         transparent
-        opacity={0.7}
+        opacity={0.55}
         color="#27BEF5"
         roughness={0}
         metalness={0}
-        ior={1.33}
+        ior={1}
         attenuationColor="#27BEF5"
         transmission={1}
         thickness={1.5}
@@ -130,8 +132,8 @@ const Fish = () => {
 
   // Animate the fish
   useFrame(() => {
-    fish.position.y += Math.sin(Date.now() * 0.001 + 2) * 0.01;
-    fish2.position.y += Math.sin(Date.now() * 0.000879 + 1) * 0.01;
+    fish.position.y += Math.sin(Date.now() * 0.001) * 0.01;
+    fish2.position.y += Math.sin(Date.now() * 0.000879) * 0.01;
     fish3.position.y += Math.sin(Date.now() * 0.00067) * 0.0023;
   });
 
@@ -144,38 +146,43 @@ const Fish = () => {
   );
 };
 
+const Background = () => {
+  const texture = useTexture("../public/assets/sky.jpeg");
+  const { scene } = useThree();
+  scene.background = texture;
+  return null;
+};
+
+const CameraInitializer = () => {
+  const { camera } = useThree();
+  camera.position.set(0, 0, 10);
+};
+
 function App() {
   return (
-    <Canvas
-      // TODO: eventually add TWCSS possibly
-      style={{
-        height: "100vh",
-        width: "100vw",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Environment preset="city" />
-      {/* Skybox for background environment */}
-      <Sky
-        distance={10000000}
-        sunPosition={[0, 100, 0]}
-        inclination={0}
-        azimuth={0.25}
-      />
-
-      {/* Controls for the camera */}
-      <OrbitControls enableZoom enablePan enableRotate />
-
-      {/* Background color */}
-      <color attach="background" args={["#000000"]} />
-
-      {/* The actual mesh for water container.*/}
-      <SphereContainer />
-      <WaterMaterial />
-      <Fish />
-    </Canvas>
+    <FadeIn>
+      <div className="relative w-screen h-screen">
+        <Header />
+        <Canvas
+          // TODO: eventually add TWCSS possibly
+          style={{
+            height: "100vh",
+            width: "100vw",
+          }}
+        >
+          <Environment preset="city" />
+          // Background sky image
+          <Background />
+          // Controls for the camera
+          <CameraInitializer />
+          <OrbitControls enableZoom enablePan enableRotate />
+          // The actual sphere with fish/water
+          <SphereContainer />
+          <WaterMaterial />
+          <Fish />
+        </Canvas>
+      </div>
+    </FadeIn>
   );
 }
 
