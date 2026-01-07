@@ -3,7 +3,7 @@
  * Note: This is my first time using ThreeJS, and my first React project in a minute! I'm going to be making notes as I go to
  * help me catch up to speed :)
  *
- * TODO: Clone fish and animate them a lil more
+ * TODO: Make a banner and message box :)
  */
 import * as THREE from "three";
 
@@ -79,13 +79,15 @@ function CameraLight() {
 }
 
 const Fish = () => {
-  // Render the fish
+  // Render the fishes
   const fish = useLoader(OBJLoader, "../public/assets/fish.obj");
   const texture = useLoader(THREE.TextureLoader, "../public/assets/fish.jpg");
   fish.rotation.x = Math.PI / 2;
   fish.rotation.y = Math.PI;
+  fish.rotation.z = -Math.PI;
   fish.position.x = -0.5;
-  fish.position.y = -0.5;
+  fish.position.y = -1;
+  fish.position.z = -2;
   fish.traverse((child) => {
     if (child.isMesh) {
       child.material = new THREE.MeshStandardMaterial({
@@ -94,14 +96,50 @@ const Fish = () => {
     }
   });
 
+  const fish2 = fish.clone();
+  const texture2 = useLoader(THREE.TextureLoader, "../public/assets/fish2.jpg");
+  fish2.rotation.y = -Math.PI;
+  fish2.rotation.x = Math.PI / 2;
+  fish2.rotation.z = Math.PI / 9.532;
+  fish2.position.x = 0.5;
+  fish2.position.y = -0.6;
+  fish2.position.z = 2.5;
+  fish2.traverse((child) => {
+    if (child.isMesh) {
+      child.material = new THREE.MeshStandardMaterial({
+        map: texture2,
+      });
+    }
+  });
+
+  const fish3 = fish2.clone();
+  const texture3 = useLoader(THREE.TextureLoader, "../public/assets/fish3.jpg");
+  fish3.rotation.y = -Math.PI;
+  fish3.rotation.x = Math.PI / 2;
+  fish3.rotation.z = Math.PI / 6.23461;
+  fish3.position.x = 0;
+  fish3.position.y = 2.5;
+  fish3.position.z = 0.12;
+  fish3.traverse((child) => {
+    if (child.isMesh) {
+      child.material = new THREE.MeshStandardMaterial({
+        map: texture3,
+      });
+    }
+  });
+
   // Animate the fish
   useFrame(() => {
-    fish.position.y += Math.sin(Date.now() * 0.001) * 0.01;
+    fish.position.y += Math.sin(Date.now() * 0.001 + 2) * 0.01;
+    fish2.position.y += Math.sin(Date.now() * 0.000879 + 1) * 0.01;
+    fish3.position.y += Math.sin(Date.now() * 0.00067) * 0.0023;
   });
 
   return (
     <>
-      <primitive object={fish} scale={0.1} />
+      <primitive object={fish} scale={0.12} />
+      <primitive object={fish2} scale={0.15} />
+      <primitive object={fish3} scale={0.09} />
     </>
   );
 };
