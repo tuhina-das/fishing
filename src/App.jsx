@@ -3,8 +3,14 @@
  * Note: This is my first time using ThreeJS, and my first React project in a minute! I'm going to be making notes as I go to
  * help me catch up to speed :)
  *
- * TODO: Make a banner and message box :) Eventuallly add shader effects to water
+ * TODO:
+ * - Make fishies interactive and add pop-ups in response to onClick events
+ * - Animate fish better
+ * - Water shader
+ * - Responsive design
+ * - Chatbox
  */
+
 import * as THREE from "three";
 
 import {
@@ -48,7 +54,7 @@ const SphereContainer = () => {
 const WaterMaterial = () => {
   return (
     <mesh>
-      <sphereGeometry args={[4.75, 64, 64]} />
+      <sphereGeometry args={[4.5, 64, 64]} />
       <meshPhysicalMaterial
         transparent
         opacity={0.55}
@@ -80,6 +86,7 @@ function CameraLight() {
   return <pointLight ref={lightRef} intensity={20} color={0xffffff} />;
 }
 
+// Function to render all 3 fish
 const Fish = () => {
   // Render the fishes
   const fish = useLoader(OBJLoader, "../public/assets/fish.obj");
@@ -146,6 +153,7 @@ const Fish = () => {
   );
 };
 
+// Static background
 const Background = () => {
   const texture = useTexture("../public/assets/sky.jpeg");
   const { scene } = useThree();
@@ -153,6 +161,7 @@ const Background = () => {
   return null;
 };
 
+// Initializing camera position so we're not 'inside' the bubble
 const CameraInitializer = () => {
   const { camera } = useThree();
   camera.position.set(0, 0, 10);
@@ -163,15 +172,12 @@ function App() {
     <FadeIn>
       <div className="relative w-screen h-screen">
         <Header />
-        <Canvas
-          // TODO: eventually add TWCSS possibly
-          style={{
-            height: "100vh",
-            width: "100vw",
-          }}
-        >
+
+        <Canvas className="w-full h-full">
+          // Background, lighting and environment
+          <ambientLight intensity={1} color={"#c8ff00ff"} />
+          <ambientLight intensity={1} color={"#FF0800"} />
           <Environment preset="city" />
-          // Background sky image
           <Background />
           // Controls for the camera
           <CameraInitializer />
