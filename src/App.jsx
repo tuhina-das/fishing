@@ -179,13 +179,42 @@ const CameraInitializer = () => {
   const { camera } = useThree();
   camera.position.set(0, 0, 10);
 };
+// Content for 'About Me' pop-up
+const AboutMeContent = () => {
+  return (
+    <>
+      <img
+        src="../../public/assets/me_irl.png"
+        alt="Picture of Me"
+        className="mx-7 rounded-lg h-[25vh] float-left mr-10 mb-5 border-1 border-white shadow-lg"
+      />
+      <p className="text-xl text-left m-4">
+        My name's <b className="text-2xl">Tuhina Das</b>, and I am a freshman
+        studying Computer Science at UT Austin. I'm curious about{" "}
+        <b className="text-2xl">AI and ML, Mobile, and Web Development</b> --
+        particularly front-end development and understanding how software shapes
+        user experiences.
+        <br />
+        <br />
+        In my free time, when I'm not coding, I enjoy{" "}
+        <b className="text-2xl">reading classic novels</b> and{" "}
+        <b className="text-2xl">creating vivid illustrations</b> of my favorite
+        shows and video games. I'm constantly looking to improve my skills and
+        explore new technologies, so{" "}
+        <b className="text-2xl">
+          feel free to reach out if you'd like to connect!
+        </b>
+      </p>
+    </>
+  );
+};
 
 function App() {
   return (
     <FadeIn>
       <div className="relative w-screen h-screen">
         <Header />
-        <Popup />
+        <Popup header={"Hello! ( ^‿^ )ﾉﾞ"} body={AboutMeContent()} />
         <Canvas className="w-full h-full">
           // Background, lighting and environment
           <ambientLight intensity={1} color={"#c8ff00ff"} />

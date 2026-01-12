@@ -5,7 +5,7 @@ export default function Header() {
     <>
       <header
         id="main-header"
-        className="fixed flex flex-wrap items-center justify-between z-5 bg-gradient-to-t from-blue-700 to-cyan-400 p-4 mx-5 my-10 backdrop-blur-md shadow-2xl rounded-3xl w-[35vw]"
+        className="fixed flex flex-wrap items-center justify-between z-5 bg-[linear-gradient(to_bottom,#9ad1fc_0%,#83c6f3_10%,#128ddf_50%,#0f75b9_50%,#137bc0_70%,#5bade4_100%)] p-4 mx-5 my-10 backdrop-blur-md shadow-2xl rounded-3xl w-[35vw]"
       >
         <div className="text-white">
           <div className="text-4xl font-medium mb-[2vh]">
