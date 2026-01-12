@@ -189,19 +189,33 @@ const AboutMeContent = () => {
         className="mx-7 rounded-lg h-[25vh] float-left mr-10 mb-5 border-1 border-white shadow-lg"
       />
       <p className="text-xl text-left m-4">
-        My name's <b className="text-2xl">Tuhina Das</b>, and I am a freshman
-        studying Computer Science at UT Austin. I'm curious about{" "}
-        <b className="text-2xl">AI and ML, Mobile, and Web Development</b> --
-        particularly front-end development and understanding how software shapes
-        user experiences.
+        My name's{" "}
+        <b className="text-2xl bg-gradient-to-r from-blue-700 via-sky-600 to-[#88C236] text-transparent bg-clip-text">
+          Tuhina (Tuna) Das
+        </b>
+        , and I am a freshman studying Computer Science at UT Austin. I'm
+        curious about{" "}
+        <b className="text-2xl bg-gradient-to-r from-blue-700 via-sky-600 to-[#88C236] text-transparent bg-clip-text">
+          AI and ML, Mobile, and Web Development
+        </b>{" "}
+        -- particularly{" "}
+        <b className="text-2xl bg-gradient-to-r from-blue-700 via-sky-600 to-[#88C236] text-transparent bg-clip-text">
+          front-end development
+        </b>{" "}
+        and understanding how software shapes user experiences.
         <br />
         <br />
         In my free time, when I'm not coding, I enjoy{" "}
-        <b className="text-2xl">reading classic novels</b> and{" "}
-        <b className="text-2xl">creating vivid illustrations</b> of my favorite
-        shows and video games. I'm constantly looking to improve my skills and
-        explore new technologies, so{" "}
-        <b className="text-2xl">
+        <b className="text-2xl bg-gradient-to-r from-blue-700 via-sky-600 to-[#88C236] text-transparent bg-clip-text">
+          reading classic novels
+        </b>{" "}
+        and{" "}
+        <b className="text-2xl bg-gradient-to-r from-blue-700 via-sky-600 to-[#88C236] text-transparent bg-clip-text">
+          creating vivid illustrations
+        </b>{" "}
+        of my favorite shows and video games. I'm constantly looking to improve
+        my skills and explore new technologies, so{" "}
+        <b className="text-2xl bg-gradient-to-r from-blue-700 via-sky-600 to-[#88C236] text-transparent bg-clip-text">
           feel free to reach out if you'd like to connect!
         </b>
       </p>
